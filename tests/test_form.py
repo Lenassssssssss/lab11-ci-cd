@@ -60,7 +60,7 @@ class FormUITests(unittest.TestCase):
         """Проверка заголовка страницы и формы."""
         self.assertEqual(self.driver.title, 'Форма регистрации')
         heading = self.driver.find_element(By.ID, 'form-title')
-        self.assertEqual(heading.text, 'Регистрация пользователя')
+        self.assertEqual(heading.text, 'Форма регистрации на сайт')
 
     def test_form_fields_are_visible(self):
         """Проверка наличия всех полей формы."""
@@ -69,7 +69,7 @@ class FormUITests(unittest.TestCase):
         self.assertTrue(self.driver.find_element(By.ID, 'message').is_displayed())
         submit_btn = self.driver.find_element(By.ID, 'submit-btn')
         self.assertTrue(submit_btn.is_displayed())
-        self.assertEqual(submit_btn.text, 'Отправить')
+        self.assertEqual(submit_btn.text, 'Зарегистрироваться')
 
     def test_successful_form_submission(self):
         """Проверка успешной отправки формы с корректными данными."""
