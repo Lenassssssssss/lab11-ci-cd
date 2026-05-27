@@ -48,3 +48,43 @@ python -m http.server 8080
 4. Дождаться прохождения тестов, выполнить merge
 5. Создать Pull Request `dev` → `main`
 6. После merge — автоматический деплой на GitHub Pages
+
+## Публикация на GitHub
+
+```powershell
+# 1. Авторизация (один раз)
+gh auth login
+
+# 2. Создание репозитория и отправка веток
+gh repo create lab11-ci-cd --public --source=. --remote=origin
+git push -u origin main
+git push -u origin dev
+git push -u origin fix
+
+# 3. Pull Request fix -> dev
+gh pr create --base dev --head fix --title "fix: обновить текст формы"
+gh pr merge --merge
+
+# 4. Pull Request dev -> main
+git checkout dev && git pull origin dev
+gh pr create --base main --head dev --title "release: слияние dev в main"
+gh pr merge --merge
+```
+
+Или запустите автоматический скрипт: `.\scripts\github-setup.ps1`
+
+### Настройка GitHub Pages
+
+Settings → Pages → Build and deployment → **Source: GitHub Actions**
+
+Деплой запускается только при push в `main` после успешного прохождения тестов.
+
+## Проверка падения тестов
+
+При несоответствии текста кнопки и ожиданий в тестах CI завершится с ошибкой:
+
+```bash
+# Пример: измените кнопку на «Отправить», не обновив тесты
+python -m pytest tests/test_form.py -v
+# FAILED test_form_fields_are_visible
+```
