@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма регистрации</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="container">
+        <h1 id="form-title">Регистрация пользователя</h1>
+        <form id="registration-form" novalidate>
+            <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" placeholder="Введите имя" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Сообщение</label>
+                <textarea id="message" name="message" rows="4" placeholder="Ваше сообщение"></textarea>
+            </div>
+            <button type="submit" id="submit-btn">Отправить</button>
+        </form>
+        <div id="result" class="result hidden" role="alert"></div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

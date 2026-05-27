@@ -1,0 +1,50 @@
+# Lab 11 — CI/CD с GitHub Actions
+
+Простая веб-форма с автоматизированными UI-тестами (Selenium) и пайплайном CI/CD.
+
+## Структура проекта
+
+```
+├── index.html              # Веб-форма регистрации
+├── css/style.css           # Стили
+├── js/app.js               # Логика формы
+├── tests/test_form.py      # Selenium UI-тесты
+├── .github/workflows/ci.yml # CI/CD пайплайн
+└── requirements.txt        # Python-зависимости
+```
+
+## Ветки
+
+| Ветка | Назначение |
+|-------|-----------|
+| `main`  | Продакшн, деплой на GitHub Pages |
+| `dev`   | Основная ветка разработки |
+| `fix`   | Ветка для задач (фичи, баги) |
+
+## Локальный запуск
+
+```bash
+# Установка зависимостей
+python -m pip install -r requirements.txt
+
+# Запуск тестов (автоматически поднимает локальный сервер)
+python -m pytest tests/test_form.py -v
+
+# Просмотр формы
+python -m http.server 8080
+# Открыть http://127.0.0.1:8080/index.html
+```
+
+## CI/CD
+
+- **CI**: тесты запускаются при каждом push и pull request в ветки `main`, `dev`, `fix`.
+- **CD**: деплой на GitHub Pages происходит только при успешном проходе тестов в ветке `main`.
+
+## Workflow разработки
+
+1. Создать ветку от `dev` (например, `fix`)
+2. Внести изменения, сделать commit и push
+3. Создать Pull Request `fix` → `dev`
+4. Дождаться прохождения тестов, выполнить merge
+5. Создать Pull Request `dev` → `main`
+6. После merge — автоматический деплой на GitHub Pages
