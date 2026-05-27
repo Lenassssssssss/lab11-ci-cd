@@ -24,15 +24,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
+          node-version: '20'
+          cache: npm
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+        run: npm ci
 
       - name: Install Google Chrome
         run: |
@@ -40,7 +39,7 @@ jobs:
           sudo apt-get install -y google-chrome-stable
 
       - name: Run Selenium UI tests
-        run: python -m pytest tests/test_form.py -v
+        run: npm test
 
   deploy:
     name: Deploy to GitHub Pages

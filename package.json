@@ -1,0 +1,14 @@
+{
+  "name": "lab11-ci-cd",
+  "version": "1.0.0",
+  "description": "Web form with Selenium UI tests and GitHub Actions CI/CD",
+  "scripts": {
+    "test": "mocha tests/test_form.js --timeout 60000",
+    "start": "http-server . -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "mocha": "^10.8.2",
+    "selenium-webdriver": "^4.27.0"
+  }
+}
