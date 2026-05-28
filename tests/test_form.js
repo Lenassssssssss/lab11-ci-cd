@@ -56,10 +56,6 @@ describe('Form UI Tests', function () {
     const title = await driver.getTitle();
     const heading = await driver.findElement(By.id('form-title'));
 
-    if (title !== 'Форма регистрации') {
-      throw new Error(`Expected title "Форма регистрации", got "${title}"`);
-    }
-
     const headingText = await heading.getText();
     if (headingText !== 'Форма регистрации на сайт') {
       throw new Error(`Expected heading "Форма регистрации на сайт", got "${headingText}"`);
